@@ -1,1 +1,21 @@
-<router-outlet />
+<nav class="bg-indigo-600 p-4 shadow-lg">
+      <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+        <a routerLink="/" class="text-white text-2xl font-bold">
+          Gestión de Personal
+        </a>
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-center">
+          <a routerLink="/departamentos-empleados" class="text-white hover:text-indigo-200 transition-colors duration-200 font-medium">
+            Ver Departamentos y Empleados
+          </a>
+          <a routerLink="/empleados" class="text-white hover:text-indigo-200 transition-colors duration-200 font-medium">
+            Gestionar Empleados
+          </a>
+          <a routerLink="/departamentos" class="text-white hover:text-indigo-200 transition-colors duration-200 font-medium">
+            Gestionar Departamentos
+          </a>
+        </div>
+      </div>
+    </nav>
+    <main class="mt-8">
+      <router-outlet></router-outlet>
+    </main>

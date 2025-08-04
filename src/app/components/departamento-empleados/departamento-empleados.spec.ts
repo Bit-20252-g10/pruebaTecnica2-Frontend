@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DepartamentoEmpleadosComponent } from './departamento-empleados';
 
-import { DepartamentoEmpleados } from './departamento-empleados';
-
-describe('DepartamentoEmpleados', () => {
-  let component: DepartamentoEmpleados;
-  let fixture: ComponentFixture<DepartamentoEmpleados>;
+describe('DepartamentoEmpleadosComponent', () => {
+  let component: DepartamentoEmpleadosComponent;
+  let fixture: ComponentFixture<DepartamentoEmpleadosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DepartamentoEmpleados]
+      // Se corrige el nombre de la clase en la importación.
+      imports: [DepartamentoEmpleadosComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DepartamentoEmpleados);
+
+    fixture = TestBed.createComponent(DepartamentoEmpleadosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
