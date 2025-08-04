@@ -8,7 +8,7 @@ import { ApiService } from '../../services/api.service';
   selector: 'app-departamento-form',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './departamento-form.component.html'
+  templateUrl: './departamento-form.html'
 })
 export class DepartamentoFormComponent implements OnInit {
   departamentoForm: FormGroup;

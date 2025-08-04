@@ -9,7 +9,7 @@ import { ApiService } from '../../services/api.service';
   selector: 'app-empleado-form',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './empleado-form.component.html'
+  templateUrl: './empleado-form.html'
 })
 export class EmpleadoFormComponent implements OnInit {
   empleadoForm: FormGroup;

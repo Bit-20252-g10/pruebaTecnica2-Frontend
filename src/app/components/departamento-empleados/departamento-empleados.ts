@@ -8,7 +8,7 @@ import { ApiService } from '../../services/api.service';
   selector: 'app-departamento-empleados',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './departamento-empleados.component.html'
+  templateUrl: './departamento-empleados.html'
 })
 export class DepartamentoEmpleadosComponent implements OnInit {
   departamentos: Departamento[] = [];
