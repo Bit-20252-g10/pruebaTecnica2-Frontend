@@ -7,7 +7,7 @@ import { Departamento } from '../models/departamento.model';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   
-  private apiUrl = 'http://localhost:4000';
+  private apiUrl = 'http://localhost:4000/api';
 
   constructor(private http: HttpClient) {}
 
