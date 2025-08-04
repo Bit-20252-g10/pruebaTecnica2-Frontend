@@ -1,0 +1,49 @@
+<div class="container mx-auto p-8 bg-gray-50 min-h-screen">
+  <h2 class="text-4xl font-extrabold text-center text-indigo-800 mb-10">
+    Departamentos y Empleados
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-xl border border-gray-200">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800">
+        Selecciona un Departamento
+      </h3>
+      <ul class="space-y-4">
+        <li *ngFor="let departamento of departamentos"
+            (click)="getEmpleadosByDept(departamento)"
+            class="cursor-pointer p-4 rounded-xl transition-all duration-300 transform hover:scale-105"
+            [ngClass]="{
+              'bg-indigo-600 text-white shadow-lg': selectedDepartamentoCodigo === departamento.codigo,
+              'bg-gray-100 text-gray-700 hover:bg-indigo-100': selectedDepartamentoCodigo !== departamento.codigo
+            }">
+          <p class="font-bold text-lg">{{ departamento.nombre }}</p>
+          <p class="text-sm">Código: {{ departamento.codigo }}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedDepartamentoCodigo !== null" class="lg:col-span-2 bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h3 class="text-3xl font-bold mb-6 text-gray-800">
+        Empleados de "{{ selectedDepartamentoNombre }}"
+      </h3>
+      <div *ngIf="empleados.length > 0; else noEmpleados">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div *ngFor="let empleado of empleados" class="p-5 bg-indigo-50 rounded-xl shadow-md border border-indigo-200">
+            <p class="font-bold text-lg text-indigo-700">{{ empleado.nombre }} {{ empleado.apellido1 }}</p>
+            <p class="text-sm text-gray-600">Código: {{ empleado.codigo }}</p>
+            <p *ngIf="empleado.apellido2" class="text-sm text-gray-600">
+              Apellido 2: {{ empleado.apellido2 }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <ng-template #noEmpleados>
+        <div class="text-center py-10">
+          <p class="text-gray-500 italic text-xl">
+            No hay empleados registrados en este departamento.
+          </p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

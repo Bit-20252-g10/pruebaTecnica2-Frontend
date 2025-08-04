@@ -1,0 +1,86 @@
+<div class="container mx-auto p-8 bg-gray-50 min-h-screen">
+  <h2 class="text-4xl font-extrabold text-center text-indigo-800 mb-10">
+    Gestionar Empleados
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800">
+        {{ editingEmpleado ? 'Editar Empleado' : 'Crear Empleado' }}
+      </h3>
+      <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div>
+          <label for="codigo" class="block text-gray-700 font-semibold mb-2">Código</label>
+          <input id="codigo" type="number" formControlName="codigo"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+            [readonly]="editingEmpleado !== null">
+        </div>
+        <div>
+          <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre</label>
+          <input id="nombre" type="text" formControlName="nombre"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">
+        </div>
+        <div>
+          <label for="apellido1" class="block text-gray-700 font-semibold mb-2">Primer Apellido</label>
+          <input id="apellido1" type="text" formControlName="apellido1"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">
+        </div>
+        <div>
+          <label for="apellido2" class="block text-gray-700 font-semibold mb-2">Segundo Apellido</label>
+          <input id="apellido2" type="text" formControlName="apellido2"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">
+        </div>
+        <div>
+          <label for="codigo_departamento" class="block text-gray-700 font-semibold mb-2">
+            Código de Departamento
+          </label>
+          <select id="codigo_departamento" formControlName="codigo_departamento"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">
+            <option [ngValue]="null" disabled selected>Selecciona un departamento</option>
+            <option *ngFor="let dept of departamentos" [ngValue]="dept.codigo">
+              {{ dept.nombre }} ({{ dept.codigo }})
+            </option>
+          </select>
+        </div>
+
+        <div class="flex space-x-4">
+          <button type="submit" [disabled]="empleadoForm.invalid"
+            class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 disabled:bg-indigo-300 transition-colors duration-200">
+            {{ editingEmpleado ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <button type="button" (click)="resetForm()"
+            class="px-6 py-3 bg-gray-400 text-white font-bold rounded-lg shadow-md hover:bg-gray-500 transition-colors duration-200">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800">
+        Lista de Empleados
+      </h3>
+      <ul class="space-y-4">
+        <li *ngFor="let empleado of empleados"
+            class="flex items-center justify-between p-4 bg-gray-100 rounded-xl shadow-sm">
+          <div>
+            <p class="font-semibold text-lg text-gray-800">
+              {{ empleado.nombre }} {{ empleado.apellido1 }}
+            </p>
+            <p class="text-sm text-gray-600">Código: {{ empleado.codigo }}</p>
+          </div>
+          <div class="space-x-2">
+            <button (click)="editEmpleado(empleado)"
+              class="text-indigo-600 hover:text-indigo-800 transition-colors duration-200 font-semibold">
+              Editar
+            </button>
+            <button (click)="deleteEmpleado(empleado.codigo)"
+              class="text-red-600 hover:text-red-800 transition-colors duration-200 font-semibold">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

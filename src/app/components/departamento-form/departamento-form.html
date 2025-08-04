@@ -1,0 +1,61 @@
+<div class="container mx-auto p-8 bg-gray-50 min-h-screen">
+  <h2 class="text-4xl font-extrabold text-center text-indigo-800 mb-10">
+    Gestionar Departamentos
+  </h2>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800">
+        {{ editingDepartamento ? 'Editar Departamento' : 'Crear Departamento' }}
+      </h3>
+      <form [formGroup]="departamentoForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div>
+          <label for="codigo" class="block text-gray-700 font-semibold mb-2">Código</label>
+          <input id="codigo" type="number" formControlName="codigo"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+            [readonly]="editingDepartamento !== null">
+        </div>
+        <div>
+          <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre</label>
+          <input id="nombre" type="text" formControlName="nombre"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">
+        </div>
+        
+        <div class="flex space-x-4">
+          <button type="submit" [disabled]="departamentoForm.invalid"
+            class="px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700 disabled:bg-indigo-300 transition-colors duration-200">
+            {{ editingDepartamento ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <button type="button" (click)="resetForm()"
+            class="px-6 py-3 bg-gray-400 text-white font-bold rounded-lg shadow-md hover:bg-gray-500 transition-colors duration-200">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800">
+        Lista de Departamentos
+      </h3>
+      <ul class="space-y-4">
+        <li *ngFor="let departamento of departamentos" 
+            class="flex items-center justify-between p-4 bg-gray-100 rounded-xl shadow-sm">
+          <div>
+            <p class="font-semibold text-lg text-gray-800">{{ departamento.nombre }} ({{ departamento.codigo }})</p>
+          </div>
+          <div class="space-x-2">
+            <button (click)="editDepartamento(departamento)" 
+              class="text-indigo-600 hover:text-indigo-800 transition-colors duration-200 font-semibold">
+              Editar
+            </button>
+            <button (click)="deleteDepartamento(departamento.codigo)" 
+              class="text-red-600 hover:text-red-800 transition-colors duration-200 font-semibold">
+              Eliminar
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
