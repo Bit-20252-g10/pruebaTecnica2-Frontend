@@ -38,10 +38,12 @@ export class EmpleadoFormComponent implements OnInit {
 
   getEmpleados() {
     this.apiService.getEmpleados().subscribe(data => this.empleados = data);
+   
   }
 
   getDepartamentos() {
     this.apiService.getDepartamentos().subscribe(data => this.departamentos = data);
+   
   }
 
   onSubmit() {
