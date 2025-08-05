@@ -42,14 +42,14 @@
         <li *ngFor="let departamento of departamentos" 
             class="flex items-center justify-between p-4 bg-gray-100 rounded-xl shadow-sm">
           <div>
-            <p class="font-semibold text-lg text-gray-800">{{ departamento.nombre }} ({{ departamento.codigo }})</p>
+            <p class="font-semibold text-lg text-gray-800">{{ departamento.name }} ({{ departamento.code }})</p>
           </div>
           <div class="space-x-2">
             <button (click)="editDepartamento(departamento)" 
               class="text-indigo-600 hover:text-indigo-800 transition-colors duration-200 font-semibold">
               Editar
             </button>
-            <button (click)="deleteDepartamento(departamento.codigo)" 
+            <button (click)="deleteDepartamento(departamento.code)" 
               class="text-red-600 hover:text-red-800 transition-colors duration-200 font-semibold">
               Eliminar
             </button>

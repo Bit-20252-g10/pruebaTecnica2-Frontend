@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } 
 import { Empleado } from '../../models/empleado.model';
 import { Departamento } from '../../models/departamento.model';
 import { ApiService } from '../../services/api.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-empleado-form',
@@ -17,7 +18,10 @@ export class EmpleadoFormComponent implements OnInit {
   departamentos: Departamento[] = [];
   editingEmpleado: Empleado | null = null;
 
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    private notificationService: NotificationService 
+  ) {
     this.empleadoForm = new FormGroup({
       codigo: new FormControl('', Validators.required),
       nombre: new FormControl('', Validators.required),
@@ -47,11 +51,13 @@ export class EmpleadoFormComponent implements OnInit {
         this.apiService.updateEmpleado(this.editingEmpleado.codigo, empleado).subscribe(() => {
           this.getEmpleados();
           this.resetForm();
+          this.notificationService.notificarCambioDeEmpleado();
         });
       } else {
         this.apiService.createEmpleado(empleado).subscribe(() => {
           this.getEmpleados();
           this.resetForm();
+          this.notificationService.notificarCambioDeEmpleado();
         });
       }
     }
@@ -69,7 +75,10 @@ export class EmpleadoFormComponent implements OnInit {
   }
 
   deleteEmpleado(codigo: number) {
-    this.apiService.deleteEmpleado(codigo).subscribe(() => this.getEmpleados());
+    this.apiService.deleteEmpleado(codigo).subscribe(() => {
+      this.getEmpleados();
+      this.notificationService.notificarCambioDeEmpleado();
+    });
   }
 
   resetForm() {

@@ -34,7 +34,7 @@ export class DepartamentoFormComponent implements OnInit {
     if (this.departamentoForm.valid) {
       const departamento: Departamento = this.departamentoForm.value;
       if (this.editingDepartamento) {
-        this.apiService.updateDepartamento(this.editingDepartamento.codigo, departamento).subscribe(() => {
+        this.apiService.updateDepartamento(this.editingDepartamento.code, departamento).subscribe(() => {
           this.getDepartamentos();
           this.resetForm();
         });
@@ -50,13 +50,13 @@ export class DepartamentoFormComponent implements OnInit {
   editDepartamento(departamento: Departamento) {
     this.editingDepartamento = departamento;
     this.departamentoForm.setValue({
-      codigo: departamento.codigo,
-      nombre: departamento.nombre
+      codigo: departamento.code,
+      nombre: departamento.name
     });
   }
 
-  deleteDepartamento(codigo: number) {
-    this.apiService.deleteDepartamento(codigo).subscribe(() => this.getDepartamentos());
+  deleteDepartamento(code: number) {
+    this.apiService.deleteDepartamento(code).subscribe(() => this.getDepartamentos());
   }
 
   resetForm() {

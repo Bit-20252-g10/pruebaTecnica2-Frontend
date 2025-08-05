@@ -13,11 +13,11 @@
             (click)="getEmpleadosByDept(departamento)"
             class="cursor-pointer p-4 rounded-xl transition-all duration-300 transform hover:scale-105"
             [ngClass]="{
-              'bg-indigo-600 text-white shadow-lg': selectedDepartamentoCodigo === departamento.codigo,
-              'bg-gray-100 text-gray-700 hover:bg-indigo-100': selectedDepartamentoCodigo !== departamento.codigo
+              'bg-indigo-600 text-white shadow-lg': selectedDepartamentoCodigo === departamento.code,
+              'bg-gray-100 text-gray-700 hover:bg-indigo-100': selectedDepartamentoCodigo !== departamento.code
             }">
-          <p class="font-bold text-lg">{{ departamento.nombre }}</p>
-          <p class="text-sm">Código: {{ departamento.codigo }}</p>
+          <p class="font-bold text-lg">{{ departamento.name }}</p>
+          <p class="text-sm">Código: {{ departamento.code }}</p>
         </li>
       </ul>
     </div>
